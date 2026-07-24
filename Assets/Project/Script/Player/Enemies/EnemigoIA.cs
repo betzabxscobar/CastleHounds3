@@ -9,12 +9,18 @@ public class EnemigoIA : MonoBehaviour
     [Header("Combate")]
     [SerializeField] private float distanciaAtaque = 2f;
     [SerializeField] private float tiempoEntreAtaques = 2f;
+    [SerializeField] private float daño = 10f;
+    [Tooltip("Retraso para aplicar el daño y que coincida con la animación de ataque.")]
+    [SerializeField] private float retrasoImpacto = 0.5f;
 
 
     private NavMeshAgent agente;
     private Transform jugador;
 
     private EnemigoAnimacion animacion;
+
+    private PlayerSalud saludJugador;
+    private DogControl controlJugador;
 
     private float contadorAtaque;
 
@@ -137,21 +143,60 @@ public class EnemigoIA : MonoBehaviour
             Random.Range(1, 4);
 
 
-        switch (ataque)
+        if (animacion != null)
         {
-            case 1:
-                animacion.Ataque1();
-                break;
+            switch (ataque)
+            {
+                case 1:
+                    animacion.Ataque1();
+                    break;
 
 
-            case 2:
-                animacion.Ataque2();
-                break;
+                case 2:
+                    animacion.Ataque2();
+                    break;
 
 
-            case 3:
-                animacion.Ataque3();
-                break;
+                case 3:
+                    animacion.Ataque3();
+                    break;
+            }
+        }
+
+
+        // Aplicar el daño al jugador tras un pequeño retraso, para que
+        // coincida con el momento del golpe en la animación.
+        StartCoroutine(AplicarDañoJugador());
+    }
+
+
+
+
+    private System.Collections.IEnumerator AplicarDañoJugador()
+    {
+        yield return new WaitForSeconds(retrasoImpacto);
+
+
+        if (jugador == null || saludJugador == null)
+        {
+            yield break;
+        }
+
+
+        // Solo conecta si el jugador sigue en rango de ataque.
+        float distancia =
+            Vector3.Distance(transform.position, jugador.position);
+
+
+        if (distancia <= distanciaAtaque + 0.5f)
+        {
+            saludJugador.RecibirDanio(daño);
+
+
+            if (controlJugador != null)
+            {
+                controlJugador.GetHit();
+            }
         }
     }
 
@@ -168,12 +213,47 @@ public class EnemigoIA : MonoBehaviour
         if (player != null)
         {
             jugador = player.transform;
+            saludJugador = player.GetComponent<PlayerSalud>();
+            controlJugador = player.GetComponent<DogControl>();
+
+            IgnorarColisionConJugador(player);
         }
         else
         {
             Debug.LogError(
                 "No existe Player con Tag Player"
             );
+        }
+    }
+
+
+
+    // Evita que el enemigo EMPUJE físicamente al jugador. El NavMeshAgent
+    // avanza hacia el jugador y su CapsuleCollider lo desplazaría al chocar.
+    // Ignorando la colisión entre los cuerpos del enemigo y del jugador, el
+    // enemigo solo aplica daño (por corrutina) sin moverlo. No afecta a las
+    // hitbox de ataque (esas usan triggers/overlap aparte).
+    private void IgnorarColisionConJugador(GameObject player)
+    {
+        Collider[] colsEnemigo = GetComponentsInChildren<Collider>();
+        Collider[] colsJugador = player.GetComponentsInChildren<Collider>();
+
+
+        foreach (Collider ce in colsEnemigo)
+        {
+            // No tocar los triggers (hitbox de ataque), solo cuerpos sólidos.
+            if (ce.isTrigger)
+                continue;
+
+
+            foreach (Collider cj in colsJugador)
+            {
+                if (cj.isTrigger)
+                    continue;
+
+
+                Physics.IgnoreCollision(ce, cj, true);
+            }
         }
     }
 }
