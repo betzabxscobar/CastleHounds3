@@ -12,6 +12,9 @@ public class BattleManager : MonoBehaviour
     [Header("Punto donde aparece el enemigo")]
     public Transform enemySpawn;
 
+    [Tooltip("Altura extra al generar el enemigo, para que no aparezca hundido en el piso.")]
+    public float spawnYOffset = 1f;
+
 
 
     [Header("Enemigo por defecto")]
@@ -122,6 +125,9 @@ public class BattleManager : MonoBehaviour
         // Posición de aparición: el punto asignado o, si falta, la del propio manager.
         Vector3 spawnPos = enemySpawn != null ? enemySpawn.position : transform.position;
         Quaternion spawnRot = enemySpawn != null ? enemySpawn.rotation : transform.rotation;
+
+        // Subir el enemigo para que no aparezca hundido en el piso.
+        spawnPos.y += spawnYOffset;
 
 
 
