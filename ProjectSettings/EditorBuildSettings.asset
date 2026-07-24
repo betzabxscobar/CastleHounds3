@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Project/Scenes/Intro_Cinematica/Historia.unity
     guid: af6718e27c6d75848bb169690f0f5ba8
   - enabled: 1
+    path: Assets/Project/Scenes/Castillo/Scenes/Demo 1.unity
+    guid: 21dd47a8a5aeb4d4e80022dc3308cee0
+  - enabled: 0
     path: Assets/Project/Scenes/Castillo/Scenes/Demo.unity
     guid: 4e0b2b51b6662be4f9d98e95645aff16
   - enabled: 0

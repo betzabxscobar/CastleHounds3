@@ -1202,7 +1202,7 @@ MonoBehaviour:
   volumenEscritura: 1
   volumenPagina: 1
   volumenInicio: 1
-  siguienteNivel: Demo
+  siguienteNivel: Demo 1
 --- !u!1 &1941722584
 GameObject:
   m_ObjectHideFlags: 0
@@ -1455,7 +1455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c87aaf3562fb4d7389554d7a5a99bc2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkipHistoryButton
-  nextSceneName: Demo
+  nextSceneName: Demo 1
   introManager: {fileID: 1935859055}
   playableDirector: {fileID: 0}
   transitionDelay: 0

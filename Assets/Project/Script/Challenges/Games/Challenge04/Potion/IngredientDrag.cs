@@ -24,6 +24,11 @@ public class IngredientDrag : MonoBehaviour
     private bool placed;
 
 
+    // Permite a otros scripts (ej. selección con mando) saber si el
+    // ingrediente ya fue usado / colocado en el caldero.
+    public bool IsPlaced => placed;
+
+
 
     [Header("Entrada al caldero")]
     public float enterSpeed = 5f;
