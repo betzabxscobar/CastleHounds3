@@ -152,10 +152,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        Debug.Log(
-            "Input: " + moveInput +
-            " Direction: " + direction
-        );
+        
 
 
 

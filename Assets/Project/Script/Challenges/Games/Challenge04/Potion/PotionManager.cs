@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 
@@ -32,6 +33,11 @@ public class PotionManager : MonoBehaviour
 
 
 
+    [Header("Escena de combate")]
+    public string battleScene = "BattleArena";
+
+
+
     private List<string> current = new List<string>();
 
 
@@ -60,6 +66,8 @@ public class PotionManager : MonoBehaviour
     {
         LoadRecipe();
     }
+
+
 
 
 
@@ -108,6 +116,8 @@ public class PotionManager : MonoBehaviour
 
 
 
+
+
     // -------------------------------
     // MOSTRAR RECETA
     // -------------------------------
@@ -137,6 +147,8 @@ public class PotionManager : MonoBehaviour
 
 
 
+
+
     // -------------------------------
     // INGREDIENTE AL CALDERO
     // -------------------------------
@@ -157,6 +169,8 @@ public class PotionManager : MonoBehaviour
         CheckRecipe();
 
     }
+
+
 
 
 
@@ -204,6 +218,8 @@ public class PotionManager : MonoBehaviour
 
 
 
+
+
     // -------------------------------
     // RECETA COMPLETADA
     // -------------------------------
@@ -226,7 +242,9 @@ public class PotionManager : MonoBehaviour
 
 
 
-        // Guardar poder para la pelea
+
+        // Guardar poder obtenido
+
         if (PotionPowerManager.Instance != null)
         {
 
@@ -239,7 +257,7 @@ public class PotionManager : MonoBehaviour
 
 
 
-        // Avisar a otros sistemas
+
         OnPotionCompleted?.Invoke(
             currentRecipe.rewardPower
         );
@@ -259,6 +277,8 @@ public class PotionManager : MonoBehaviour
 
 
 
+
+
     // -------------------------------
     // RECETA INCORRECTA
     // -------------------------------
@@ -271,10 +291,11 @@ public class PotionManager : MonoBehaviour
         );
 
 
-
         ResetPotion();
 
     }
+
+
 
 
 
@@ -304,6 +325,8 @@ public class PotionManager : MonoBehaviour
         }
 
     }
+
+
 
 
 
@@ -356,16 +379,32 @@ public class PotionManager : MonoBehaviour
 
 
 
+
+
+    // -------------------------------
+    // CAMBIO A COMBATE
+    // -------------------------------
+
     void ReturnScene()
     {
 
         Debug.Log(
-            "Poder listo para combate"
+            "Entrando a la arena de combate"
         );
 
 
-        Challenge04SceneFlowController.CompleteAndReturn(
-            ChallengeResult.Won
+
+        if (PotionPowerManager.Instance != null)
+        {
+
+            PotionPowerManager.Instance.EnablePower();
+
+        }
+
+
+
+        SceneManager.LoadScene(
+            battleScene
         );
 
     }

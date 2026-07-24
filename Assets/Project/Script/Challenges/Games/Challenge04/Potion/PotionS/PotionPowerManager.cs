@@ -10,6 +10,9 @@ public class PotionPowerManager : MonoBehaviour
     public ElementType currentPower;
 
 
+    private bool powerEnabled;
+
+
 
     private void Awake()
     {
@@ -29,6 +32,8 @@ public class PotionPowerManager : MonoBehaviour
 
 
 
+
+
     public void SetPower(ElementType power)
     {
 
@@ -43,12 +48,69 @@ public class PotionPowerManager : MonoBehaviour
 
 
 
+
+
     public ElementType GetPower()
     {
 
         return currentPower;
 
     }
+
+
+
+
+
+    // Activar poder al entrar a combate
+
+    public void EnablePower()
+    {
+
+        powerEnabled = true;
+
+
+        Debug.Log(
+            "Poder habilitado para combate"
+        );
+
+    }
+
+
+
+
+
+    // Desactivar al volver al mundo
+
+    public void DisablePower()
+    {
+
+        powerEnabled = false;
+
+
+        currentPower = ElementType.None;
+
+
+        Debug.Log(
+            "Poder eliminado"
+        );
+
+    }
+
+
+
+
+
+    // Saber si puede usarse
+
+    public bool CanUsePower()
+    {
+
+        return powerEnabled &&
+               currentPower != ElementType.None;
+
+    }
+
+
 
 
 

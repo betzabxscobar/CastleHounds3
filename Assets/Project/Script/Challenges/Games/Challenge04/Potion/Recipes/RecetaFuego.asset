@@ -18,3 +18,4 @@ MonoBehaviour:
   - Hierba
   - Raiz
   rewardPower: 1
+  enemyPrefab: {fileID: 7815595191308821905, guid: 943941a3d2aecdb41939bcc4b2399c40, type: 3}
