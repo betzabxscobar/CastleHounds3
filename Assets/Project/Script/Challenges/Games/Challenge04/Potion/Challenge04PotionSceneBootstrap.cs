@@ -32,6 +32,17 @@ public sealed class Challenge04PotionSceneBootstrap : MonoBehaviour
 
         EnsureInputSystemEventSystem();
         EnsureExitButton();
+        EnsureGamepadSelector();
+    }
+
+    private static void EnsureGamepadSelector()
+    {
+        // Si la escena aún no tiene el selector con mando, se crea uno.
+        if (Object.FindAnyObjectByType<PotionGamepadSelector>() == null)
+        {
+            GameObject selectorObject = new GameObject("PotionGamepadSelector");
+            selectorObject.AddComponent<PotionGamepadSelector>();
+        }
     }
 
     private static void EnsureInputSystemEventSystem()
