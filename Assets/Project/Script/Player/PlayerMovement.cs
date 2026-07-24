@@ -18,6 +18,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float runSpeed = 7f;
 
 
+    [Header("Gravedad")]
+    [SerializeField] private float gravedad = -20f;
+
+    private float velocidadVertical;
+
+
     [Header("Rotación modelo")]
     [SerializeField] private float modelRotationSpeed = 10f;
 
@@ -109,7 +115,6 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-
     private void Update()
     {
 
@@ -118,22 +123,20 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        // Dirección de cámara
+        // ======================
+        // DIRECCIÓN DE CÁMARA
+        // ======================
 
         Vector3 forward = cameraTransform.forward;
         Vector3 right = cameraTransform.right;
-
 
 
         forward.y = 0f;
         right.y = 0f;
 
 
-
         forward.Normalize();
         right.Normalize();
-
-
 
 
 
@@ -152,14 +155,12 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        
 
 
 
-
-
-
-        // Rotación del modelo
+        // ======================
+        // ROTACIÓN DEL MODELO
+        // ======================
 
         if (modelPivot != null && direction.sqrMagnitude > 0.01f)
         {
@@ -183,7 +184,9 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        // Velocidad
+        // ======================
+        // VELOCIDAD
+        // ======================
 
         float speed =
             isRunning ? runSpeed : walkSpeed;
@@ -221,9 +224,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-            dogControl.SetSpeed(
-                animationSpeed
-            );
+            dogControl.SetSpeed(animationSpeed);
 
         }
 
@@ -232,10 +233,37 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        // Movimiento jugador
+
+        // ======================
+        // GRAVEDAD
+        // ======================
+
+        if (controller.isGrounded && velocidadVertical < 0)
+        {
+            velocidadVertical = -2f;
+        }
+
+
+        velocidadVertical += gravedad * Time.deltaTime;
+
+
+
+
+
+
+
+        // ======================
+        // MOVIMIENTO FINAL
+        // ======================
+
+        Vector3 movimiento = direction * speed;
+
+
+        movimiento.y = velocidadVertical;
+
 
         controller.Move(
-            direction * speed * Time.deltaTime
+            movimiento * Time.deltaTime
         );
 
     }

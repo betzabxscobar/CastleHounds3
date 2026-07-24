@@ -24,11 +24,11 @@ public class DogWeapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        EnemyHealth enemy = other.GetComponent<EnemyHealth>();
+        EnemigoSalud enemy = other.GetComponent<EnemigoSalud>();
 
         if (enemy != null)
         {
-            enemy.TakeDamage(damage);
+            enemy.RecibirDanio(damage);
         }
     }
 }

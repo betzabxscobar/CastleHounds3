@@ -34208,7 +34208,7 @@ GameObject:
   - component: {fileID: 8176230078092200170}
   - component: {fileID: 8636462576248347671}
   m_Layer: 0
-  m_Name: Meteors AOE
+  m_Name: Piedra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
