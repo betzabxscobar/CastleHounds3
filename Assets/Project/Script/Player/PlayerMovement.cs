@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     private CharacterController controller;
     private PlayerControls controls;
+    private AresAnimatorController aresAnimator;
 
     private Vector2 moveInput;
     private bool isRunning;
@@ -65,6 +66,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (aresAnimator == null)
+        {
+            aresAnimator = GetComponentInChildren<AresAnimatorController>();
+        }
+
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            aresAnimator?.TriggerAttack();
+        }
+
         if (cameraTransform == null)
             return;
 
@@ -101,5 +112,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Mover
         controller.Move(direction * speed * Time.deltaTime);
+
+        aresAnimator?.SetMovement(direction.magnitude, isRunning);
     }
 }

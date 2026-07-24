@@ -32,6 +32,8 @@ public sealed class DogHealth : MonoBehaviour
         CurrentHealth = Mathf.Max(0f, CurrentHealth - amount);
         Debug.Log($"{name} recibio {amount} de dano. Vida: {CurrentHealth}/{maxHealth}.", this);
 
+        GetComponentInChildren<AresAnimatorController>()?.TriggerHit();
+
         if (CurrentHealth <= 0f)
         {
             Die();
