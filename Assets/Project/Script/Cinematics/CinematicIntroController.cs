@@ -33,6 +33,7 @@ public sealed class CinematicIntroController : MonoBehaviour
     [SerializeField] private GameObject[] inputObjectsToDisable;
 
     [Header("Camaras Cinemachine 3")]
+    [SerializeField] private CinemachineCamera dogCamera;
     [SerializeField] private CinemachineCamera castleCamera;
     [SerializeField] private CinemachineCamera entranceCamera;
     [SerializeField] private CinemachineCamera dogPresentationCamera;
@@ -265,7 +266,7 @@ public sealed class CinematicIntroController : MonoBehaviour
         }
 
         PositionExplorationCameraBehindDog();
-        ActivateCamera(explorationCamera);
+        ActivateCamera(dogCamera); 
         DisableCinematicCameras();
         LockDogControl(false);
 
