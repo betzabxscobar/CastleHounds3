@@ -52,6 +52,24 @@ public class BarraVidaUI : MonoBehaviour
     }
 
 
+    // Permite configurar la barra desde código (p.ej. al construir el HUD de
+    // la BattleArena en tiempo de ejecución) sin depender del inspector.
+    public void Configure(Objetivo nuevoObjetivo, Image nuevoRelleno = null, bool ocultarSiNoHayObjetivo = false)
+    {
+        objetivo = nuevoObjetivo;
+        ocultarSinObjetivo = ocultarSiNoHayObjetivo;
+
+        if (nuevoRelleno != null)
+        {
+            relleno = nuevoRelleno;
+        }
+        else if (relleno == null)
+        {
+            relleno = GetComponent<Image>();
+        }
+    }
+
+
     private void Update()
     {
         if (relleno == null)
