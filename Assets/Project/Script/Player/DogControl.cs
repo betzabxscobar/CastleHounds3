@@ -62,7 +62,7 @@ public class DogControl : MonoBehaviour
     public void GetHit()
     {
         animator.SetTrigger(
-            "GetHit"
+            "GetHIt"
         );
     }
 

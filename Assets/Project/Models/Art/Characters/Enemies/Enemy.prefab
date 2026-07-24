@@ -174,8 +174,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wolfboss_B
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5458353225504657837, guid: 4bbd87a5c12e92748ab033feeaee5e85, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
