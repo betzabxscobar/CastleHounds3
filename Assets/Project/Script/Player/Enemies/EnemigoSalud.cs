@@ -18,6 +18,10 @@ public class EnemigoSalud : MonoBehaviour
     public float VidaMaxima => vidaMaxima;
     public bool Muerto => muerto;
 
+    // Se dispara una sola vez cuando el enemigo muere. Lo usa BattleManager
+    // para saber que la pelea se ganó y volver a Demo 1 marcando el reto.
+    public event System.Action<EnemigoSalud> OnMuerto;
+
 
     private void Awake()
     {
@@ -79,6 +83,10 @@ public class EnemigoSalud : MonoBehaviour
         {
             animacion.Morir();
         }
+
+
+        // Avisar a quien esté escuchando (BattleManager) que se ganó la pelea.
+        OnMuerto?.Invoke(this);
 
 
         // Desactivar IA y colisiones para que ya no ataque ni estorbe.

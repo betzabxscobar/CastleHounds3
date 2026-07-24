@@ -18,4 +18,10 @@ public class RecipeData : ScriptableObject
 
     [Header("Combate")]
     public GameObject enemyPrefab;
+
+    [Header("Reto asociado a la casa")]
+    [Tooltip("ID del reto que se marca como completado al ganar la pelea de esta casa. " +
+             "Usa los valores de ChallengeProgressManager, p.ej. 'house_challenge_01'. " +
+             "Déjalo vacío si esta receta no debe completar ningún reto.")]
+    public string challengeId;
 }
