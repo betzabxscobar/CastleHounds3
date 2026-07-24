@@ -48,7 +48,7 @@ public class PotionGamepadSelector : MonoBehaviour
         // que la navegación sea siempre la misma.
         if (ingredients == null || ingredients.Count == 0)
         {
-            IngredientDrag[] found = FindObjectsOfType<IngredientDrag>();
+            IngredientDrag[] found = FindObjectsByType<IngredientDrag>(FindObjectsSortMode.None);
             System.Array.Sort(found, (a, b) => string.Compare(a.name, b.name, System.StringComparison.Ordinal));
             ingredients = new List<IngredientDrag>(found);
         }
@@ -56,7 +56,7 @@ public class PotionGamepadSelector : MonoBehaviour
         // Buscar el caldero si no se asignó.
         if (cauldron == null)
         {
-            cauldron = FindObjectOfType<PotionCauldron>();
+            cauldron = FindAnyObjectByType<PotionCauldron>();
         }
 
         Debug.Log(

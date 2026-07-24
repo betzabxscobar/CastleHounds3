@@ -90,7 +90,7 @@ public class UIGamepadNavigator : MonoBehaviour
         EventSystem es = EventSystem.current;
         if (es == null)
         {
-            es = FindObjectOfType<EventSystem>();
+            es = FindAnyObjectByType<EventSystem>();
         }
 
         if (es == null)
