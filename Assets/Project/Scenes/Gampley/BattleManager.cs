@@ -12,8 +12,9 @@ public class BattleManager : MonoBehaviour
     [Header("Punto donde aparece el enemigo")]
     public Transform enemySpawn;
 
-    [Tooltip("Altura extra al generar el enemigo, para que no aparezca hundido en el piso.")]
-    public float spawnYOffset = 3f;
+    [Tooltip("Altura extra al generar el enemigo. La altura del modelo ya está ajustada " +
+             "en el prefab (Wolfboss_B en Y=0.23), así que normalmente se deja en 0.")]
+    public float spawnYOffset = 0f;
 
 
 
