@@ -1,18 +1,33 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 
 public class DogCombat : MonoBehaviour
 {
+    [Header("Espada")]
+    [Tooltip("Si se deja vacío, se busca un DogWeapon en los hijos.")]
+    [SerializeField] private DogWeapon weapon;
+
+    [Tooltip("Cuánto tiempo queda activo el hitbox de la espada por ataque.")]
+    [SerializeField] private float hitboxDuration = 0.4f;
+
 
     private PlayerControls controls;
 
     private DogControl dogControl;
 
+    private Coroutine swingRoutine;
+
 
     private void Awake()
     {
         dogControl = GetComponent<DogControl>();
+
+        if (weapon == null)
+        {
+            weapon = GetComponentInChildren<DogWeapon>(true);
+        }
 
 
         controls = new PlayerControls();
@@ -81,6 +96,9 @@ public class DogCombat : MonoBehaviour
         }
 
 
+        Golpear();
+
+
         Debug.Log("Ataque 1");
 
     }
@@ -98,8 +116,45 @@ public class DogCombat : MonoBehaviour
         }
 
 
+        Golpear();
+
+
         Debug.Log("Ataque 2");
 
+    }
+
+
+
+
+    // Activa el hitbox de la espada durante un instante para que el
+    // golpe conecte con el enemigo (sin depender de eventos de animación).
+    private void Golpear()
+    {
+        if (weapon == null)
+        {
+            return;
+        }
+
+        if (swingRoutine != null)
+        {
+            StopCoroutine(swingRoutine);
+        }
+
+        swingRoutine = StartCoroutine(SwingRoutine());
+    }
+
+
+
+
+    private IEnumerator SwingRoutine()
+    {
+        weapon.EnableHitbox();
+
+        yield return new WaitForSeconds(hitboxDuration);
+
+        weapon.DisableHitbox();
+
+        swingRoutine = null;
     }
 
 
