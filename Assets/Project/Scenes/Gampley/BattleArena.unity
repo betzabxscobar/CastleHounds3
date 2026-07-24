@@ -1261,6 +1261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleManager
   enemySpawn: {fileID: 1665904316}
+  defaultEnemyPrefab: {fileID: 7815595191308821905, guid: 943941a3d2aecdb41939bcc4b2399c40, type: 3}
 --- !u!4 &1985984262
 Transform:
   m_ObjectHideFlags: 0
