@@ -42,7 +42,7 @@ public class IntroManager : MonoBehaviour
     [Range(0f, 1f)]
     public float volumenInicio = 0.8f;
 
-    public string siguienteNivel = "Demo";
+    public string siguienteNivel = "Demo 1";
 
     private int indice;
     private bool cambiando;

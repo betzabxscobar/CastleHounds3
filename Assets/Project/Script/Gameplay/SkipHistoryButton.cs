@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SkipHistoryButton : MonoBehaviour
 {
-    [SerializeField] private string nextSceneName = "Demo";
+    [SerializeField] private string nextSceneName = "Demo 1";
     [SerializeField] private IntroManager introManager;
     [SerializeField] private PlayableDirector playableDirector;
     [SerializeField, Min(0f)] private float transitionDelay;
