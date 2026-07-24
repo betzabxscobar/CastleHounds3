@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Project/Scenes/Castillo/Scenes/Demo.unity
     guid: 4e0b2b51b6662be4f9d98e95645aff16
-  - enabled: 1
+  - enabled: 0
     path: Assets/Project/Scenes/Ring Peleas/_DemoScene.unity
     guid: 93b77105f9661be4484a78c6a214e8c1
   - enabled: 1
@@ -35,5 +35,8 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Project/Scenes/Gampley/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Project/Scenes/Challenges/Challenge04_Pocion/MiniJuegoPocion.unity
+    guid: 039b924b6fbdff944a7058861b3ff3ca
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
