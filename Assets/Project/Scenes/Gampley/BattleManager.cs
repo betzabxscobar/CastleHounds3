@@ -13,7 +13,7 @@ public class BattleManager : MonoBehaviour
     public Transform enemySpawn;
 
     [Tooltip("Altura extra al generar el enemigo, para que no aparezca hundido en el piso.")]
-    public float spawnYOffset = 1f;
+    public float spawnYOffset = 3f;
 
 
 
