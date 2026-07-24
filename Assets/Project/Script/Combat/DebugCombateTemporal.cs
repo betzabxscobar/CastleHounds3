@@ -10,7 +10,7 @@ public class DebugCombateTemporal : MonoBehaviour
     {
         if (combatManager == null)
         {
-            combatManager = FindFirstObjectByType<CombatManager>();
+            combatManager = FindAnyObjectByType<CombatManager>();
         }
     }
 

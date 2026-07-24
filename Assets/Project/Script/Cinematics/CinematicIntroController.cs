@@ -61,7 +61,6 @@ public sealed class CinematicIntroController : MonoBehaviour
     [SerializeField] private bool allowSkip = true;
     [SerializeField] private bool moveDogToStartOnIntro = true;
     [SerializeField] private float skipInputDelay = 0.35f;
-    [SerializeField] private KeyCode legacySkipKey = KeyCode.Escape;
     [SerializeField] private int inactivePriority = 0;
     [SerializeField] private int activePriority = 20;
 
